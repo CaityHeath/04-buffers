@@ -1,0 +1,1 @@
+['Peter','John','Mary'].forEach( item => console.log(item));
