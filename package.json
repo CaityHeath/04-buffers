@@ -19,6 +19,11 @@
   },
   "homepage": "https://github.com/CaityHeath/04-buffers#readme",
   "dependencies": {
+    "buffer": "^5.2.1",
+    "buffer-concat": "^1.0.0",
+    "buffer-fill": "^1.0.0",
+    "buffer-from": "^1.1.1",
+    "buffer-slice": "0.0.1",
     "eslint": "^5.10.0",
     "jest": "^23.6.0"
   }

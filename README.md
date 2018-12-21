@@ -1,15 +1,14 @@
 ![CF](http://i.imgur.com/7v5ASc8.png) LAB
 =================================================
 
-## Project Name
+## Lab 04 Buffers
 
-### Author: Student/Group Name
+### Author: Caity Heath in collaboration with Hannah Ingham and Jacob Anderson
 
 ### Links and Resources
-* [repo](http://xyz.com)
-* [travis](http://xyz.com)
-* [back-end](http://xyz.com)
-* [front-end](http://xyz.com)
+* [repo](https://github.com/CaityHeath/04-buffers)
+* [travis](https://www.travis-ci.com/)
+
 
 ### Modules
 #### `modulename.js`
