@@ -12,7 +12,7 @@
 
 ### Modules
 #### `new-pairs.js`
-###$ `edit-files.js`
+#### `edit-files.js`
 
 
 
