@@ -1,77 +1,71 @@
 'use strict';
 
 const fs = require('fs');
-const fill = require('buffer-fill');
-const slice = require('buffer-slice');
-const concat = require('buffer-concat');
-var Buffer = require('buffer/').Buffer; 
+var Buffer = require('buffer/').Buffer;
 
 let text = '';
 
-
-let setPromise = new Promise(function (resolve, reject) {
-
+let setPromise = new Promise(function(resolve, reject) {
   //read in the text file
-  fs.readFile('./files/pair-programming.txt', (err, data) =>{
-    if(err){
+  fs.readFile('./files/pair-programming.txt', (err, data) => {
+    if (err) {
       console.log('error');
     }
-    for ( let char of data){
+    for (let char of data) {
       text += String.fromCharCode(char);
     }
-    console.log('ran read file');
     resolve(data, text);
     return text;
   });
-
 });
 
+setPromise.then((data, text) => {
 
-setPromise.then((data, text) =>{
-
-  // const articleOpen = Buffer.from('<article>');//length: 9
-  // const articleClose = Buffer.from('</article>');//length: 10
-  // const h2Open = Buffer.from('<h2>');//length: 4
-  // const h2Close = Buffer.from('</h2>');//length: 5
-  // const h3Open = Buffer.from('<h3>');//length: 4
-  // const h3Close = Buffer.from('</h3>');//length: 5
-
-  // let idx = stuff.indexOf('H');
   let htmlArticle = Buffer.alloc('<article>'.length);
   let htmlArticleEnd = Buffer.alloc('</article>'.length);
 
   htmlArticle.fill('<article>');
-
   htmlArticleEnd.fill('</article>');
 
-  console.log('data' , data);
-  const allContent = Buffer.concat([htmlArticle, data, htmlArticleEnd], (htmlArticle.length + data.length + htmlArticleEnd.length));
-    
-  console.log(allContent.toString());
-  // console.log(allContent.indexOf('\n'));
-  // console.log(allContent.indexOf('\n'));
-
-  // console.log(data.indexOf('\n'));
   let previousIdx = 9;
-  let bufferLength = 0;
   let bufArray = [];
-  for (let i = 0;i< data.length; i++){
-    // console.log( data[i].toString(16) );
-        
-    if( (data[i].toString(16)) === 'a' ){
+  
+  for (let i = 0; i < data.length; i++) {
 
-      let b = Buffer.alloc(i-previousIdx);//sets container of correct length
+    if (data[i].toString(16) === 'a') {
+      let b = Buffer.alloc(i - previousIdx); //sets container of correct length
       b = data.slice(previousIdx, i);
-      console.log('im b ' , b);
 
       bufArray.push(b);
-
-      // console.log('in for loop');
-      // console.log('found a slash', i);
       previousIdx = i;
     }
   }
-  console.log(bufArray);
+
+  let bufLen = bufArray.length;
+
+  for (let i = 0; i < bufLen; i++) { //h2 adder
+
+    if (bufArray[i].length < 34 && bufArray[i].length > 9) {
+
+      let h2 = Buffer.alloc('<h2>'.length);
+      let h2Close = Buffer.alloc('</h2>'.length);
+      h2.fill('<h2>');
+      h2Close.fill('</h2>');
+      bufArray[i] = Buffer.concat([h2,bufArray[i],h2Close], (h2.length + bufArray[i].length + h2Close.length));
+
+    }
+  }
+  let finalBuffer = Buffer.alloc(0);
+
+  for(let i = 0; i <bufArray.length; i++ ) {
+    let len = finalBuffer.length + bufArray[i].length;
+    finalBuffer = Buffer.concat([finalBuffer, bufArray[i]], len);
+  }
+  return finalBuffer;
+
+}).then((buffer) => {
+  fs.writeFile('./files/pair-programming.html', buffer, (err) => {
+    if (err) {return console.log(err); }
+    console.log('file saved');
+  });
 });
-
-
