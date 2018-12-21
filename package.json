@@ -1,0 +1,30 @@
+{
+  "name": "04-buffers",
+  "version": "1.0.0",
+  "description": "![CF](http://i.imgur.com/7v5ASc8.png) LAB =================================================",
+  "main": "loop.js",
+  "scripts": {
+    "lint": "eslint **/*.js",
+    "test": "jest --coverage --verbose",
+    "test-watch": "jest --watchAll --coverage --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaityHeath/04-buffers.git"
+  },
+  "author": "Caity Heath",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CaityHeath/04-buffers/issues"
+  },
+  "homepage": "https://github.com/CaityHeath/04-buffers#readme",
+  "dependencies": {
+    "buffer": "^5.2.1",
+    "buffer-concat": "^1.0.0",
+    "buffer-fill": "^1.0.0",
+    "buffer-from": "^1.1.1",
+    "buffer-slice": "0.0.1",
+    "eslint": "^5.10.0",
+    "jest": "^23.6.0"
+  }
+}

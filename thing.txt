@@ -1,0 +1,39 @@
+function from(value, encodingOrOffset, length) {
+  if (typeof value === 'string')
+    return fromString(value, encodingOrOffset);
+
+  if (isAnyArrayBuffer(value))
+    return fromArrayBuffer(value, encodingOrOffset, length);
+
+  if (value === null || value === undefined) {
+    throw new ERR_INVALID_ARG_TYPE(
+      'first argument',
+      ['string', 'Buffer', 'ArrayBuffer', 'Array', 'Array-like Object'],
+      value
+    );
+  }
+
+  if (typeof value === 'number') {
+    throw new ERR_INVALID_ARG_TYPE('value', 'not number', value);
+  }
+
+  const valueOf = value.valueOf && value.valueOf();
+  if (valueOf !== null && valueOf !== undefined && valueOf !== value)
+    return Buffer.from(valueOf, encodingOrOffset, length);
+
+  var b = fromObject(value);
+  if (b)
+    return b;
+
+  if (typeof value[Symbol.toPrimitive] === 'function') {
+    return Buffer.from(value[Symbol.toPrimitive]('string'),
+                       encodingOrOffset,
+                       length);
+  }
+
+  throw new ERR_INVALID_ARG_TYPE(
+    'first argument',
+    ['string', 'Buffer', 'ArrayBuffer', 'Array', 'Array-like Object'],
+    value
+  );
+}

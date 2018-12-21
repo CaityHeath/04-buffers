@@ -1,42 +1,35 @@
 ![CF](http://i.imgur.com/7v5ASc8.png) LAB
 =================================================
 
-## Project Name
+## Lab 04 Buffers
 
-### Author: Student/Group Name
+### Author: Caity Heath in collaboration with Hannah Ingham and Jacob Anderson
 
 ### Links and Resources
-* [repo](http://xyz.com)
-* [travis](http://xyz.com)
-* [back-end](http://xyz.com)
-* [front-end](http://xyz.com)
+* [repo](https://github.com/CaityHeath/04-buffers)
+* [travis](https://www.travis-ci.com/)
+
 
 ### Modules
-#### `modulename.js`
-##### Exported Values and Methods
+#### `new-pairs.js`
+###$ `edit-files.js`
 
-###### `foo(thing) -> string`
-Usage Notes or examples
 
-###### `bar(array) -> array`
-Usage Notes or examples
 
 ### Setup
-#### `.env` requirements
-* `PORT` - Port Number
-* `MONGODB_URI` - URL to the running mongo instance/db
+You will need to initialize this repository as node module by using the following command in your command line 
+`npm i`
+
+This will install Node and you will be able to access my dependencies. 
 
 #### Running the app
-* `npm start`
-* Endpoint: `/foo/bar/`
-  * Returns a JSON object with abc in it.
-* Endpoint: `/bing/zing/`
-  * Returns a JSON object with xyz in it.
+* `node new-pairs.js`
+* Endpoint: `pair-programming.html`
+  * Returns an HTML file with appropriate scaffolding to open in the browser.
 
-#### Tests
-* How do you run tests?
-* What assertions were made?
-* What assertions need to be / should be made?
+* `node edit-files.js`
+* Endpoint: `loop.js`
+  * Returns a JS file with a forEach loop to iterate over an array. 
 
-#### UML
-Link to an image of the UML for your application and response to events
+
+
