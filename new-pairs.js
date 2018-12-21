@@ -42,9 +42,7 @@ setPromise.then((data, text) => {
   }
 
   let bufLen = bufArray.length;
-
   for (let i = 0; i < bufLen; i++) { //h2 adder
-
     if (bufArray[i].length < 34 && bufArray[i].length > 9) {
 
       let h2 = Buffer.alloc('<h2>'.length);
@@ -52,15 +50,17 @@ setPromise.then((data, text) => {
       h2.fill('<h2>');
       h2Close.fill('</h2>');
       bufArray[i] = Buffer.concat([h2,bufArray[i],h2Close], (h2.length + bufArray[i].length + h2Close.length));
-
     }
   }
+
   let finalBuffer = Buffer.alloc(0);
 
   for(let i = 0; i <bufArray.length; i++ ) {
     let len = finalBuffer.length + bufArray[i].length;
     finalBuffer = Buffer.concat([finalBuffer, bufArray[i]], len);
   }
+
+  finalBuffer= Buffer.concat([htmlArticle, finalBuffer, htmlArticleEnd], htmlArticle.length + finalBuffer.length + htmlArticleEnd.length);
   return finalBuffer;
 
 }).then((buffer) => {
